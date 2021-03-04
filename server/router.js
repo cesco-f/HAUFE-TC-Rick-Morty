@@ -11,5 +11,15 @@ router.post(
 );
 router.post('/login', authController.login);
 router.get('/characters', verifyToken, charactersController.getCharacters);
+router.put(
+  '/add-character/:id',
+  verifyToken,
+  charactersController.addCharacter,
+);
+router.put(
+  '/remove-character/:id',
+  verifyToken,
+  charactersController.removeCharacter,
+);
 
 module.exports = router;
