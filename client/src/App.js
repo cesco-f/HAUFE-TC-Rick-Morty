@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from 'react-router-dom';
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import Navbar from './components/Navbar/Navbar';
@@ -69,9 +64,9 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <Router>{token ? authRoutes : notAuthRoutes}</Router>
+      {token ? authRoutes : notAuthRoutes}
     </div>
   );
 }
 
-export default App;
+export default withRouter(App);
