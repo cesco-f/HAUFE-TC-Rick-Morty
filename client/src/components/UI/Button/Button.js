@@ -1,7 +1,13 @@
 import React from 'react';
 
-function Button() {
-  return <div>Button</div>;
+import './Button.scss';
+
+function Button({ text, onClickCb }) {
+  return (
+    <button className="Button" onClick={onClickCb}>
+      {text}
+    </button>
+  );
 }
 
 export default Button;

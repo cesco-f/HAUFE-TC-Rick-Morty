@@ -1,7 +1,21 @@
 import React from 'react';
+import Button from './../../UI/Button/Button';
+
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setInvalidToken } from '../../../store/actions/tokenActions';
 
 function LogoutBtn() {
-  return <div>LogoutBtn</div>;
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const logOut = () => {
+    localStorage.setItem('token', null);
+    dispatch(setInvalidToken());
+    history.push('/');
+  };
+
+  return <Button text="Log out" onClickCb={logOut} />;
 }
 
 export default LogoutBtn;
