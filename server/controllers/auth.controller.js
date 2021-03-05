@@ -5,30 +5,27 @@ const db = require('../db');
 
 const secret = process.env.SECRET_KEY || 'here_is_your_secret_key';
 
-const register = (req, res) => {
-  const user = new db.User({
-    username: req.body.username,
-    email: req.body.email,
-    password: bcrypt.hashSync(req.body.password, 8),
-  });
+const register = async (req, res) => {
+  try {
+    const user = new db.User({
+      username: req.body.username,
+      email: req.body.email,
+      password: bcrypt.hashSync(req.body.password, 8),
+    });
 
-  user.save((err) => {
-    if (err) {
-      res.status(500).send({ message: err });
-      return;
-    }
+    await user.save();
     res.send({ message: 'User was registered successfully!' });
-  });
+  } catch (error) {
+    console.error('Error: ', error); // eslint-disable-line no-console
+    res.status(500).send({ message: error });
+  }
 };
 
-const login = (req, res) => {
-  db.User.findOne({
-    username: req.body.username,
-  }).exec((err, user) => {
-    if (err) {
-      res.status(500).send({ message: err });
-      return;
-    }
+const login = async (req, res) => {
+  try {
+    const user = await db.User.findOne({
+      username: req.body.username,
+    });
 
     if (!user) {
       return res.status(404).send({ message: 'User Not found.' });
@@ -56,7 +53,10 @@ const login = (req, res) => {
       email: user.email,
       accessToken: token,
     });
-  });
+  } catch (error) {
+    console.error('Error: ', error); // eslint-disable-line no-console
+    res.status(500).send({ message: error });
+  }
 };
 
 module.exports = { register, login };

@@ -1,25 +1,17 @@
 const router = require('express').Router();
-const authController = require('./controllers/auth.controller');
-const charactersController = require('./controllers/characters.controller');
+const { register, login } = require('./controllers/auth.controller');
+const {
+  getCharacters,
+  addCharacter,
+  removeCharacter,
+} = require('./controllers/characters.controller');
 const { checkDuplicateUsernameOrEmail } = require('./middlewares/verifySignUp');
 const { verifyToken } = require('./middlewares/authJwt');
 
-router.post(
-  '/register',
-  checkDuplicateUsernameOrEmail,
-  authController.register,
-);
-router.post('/login', authController.login);
-router.get('/characters', verifyToken, charactersController.getCharacters);
-router.put(
-  '/add-character/:id',
-  verifyToken,
-  charactersController.addCharacter,
-);
-router.put(
-  '/remove-character/:id',
-  verifyToken,
-  charactersController.removeCharacter,
-);
+router.post('/register', checkDuplicateUsernameOrEmail, register);
+router.post('/login', login);
+router.get('/characters', verifyToken, getCharacters);
+router.put('/add-character/:charId', verifyToken, addCharacter);
+router.put('/remove-character/:charId', verifyToken, removeCharacter);
 
 module.exports = router;
