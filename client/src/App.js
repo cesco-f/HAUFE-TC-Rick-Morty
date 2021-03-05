@@ -26,9 +26,6 @@ function App() {
       <Route path="/login">
         <Redirect to="/" />
       </Route>
-      <Route path="/logout">
-        <Redirect to="/" />
-      </Route>
       <Route path="/character/:charId">
         <CharacterDetail />
       </Route>
@@ -48,9 +45,6 @@ function App() {
       </Route>
       <Route path="/login">
         <Login />
-      </Route>
-      <Route path="/logout">
-        <Redirect to="/" />
       </Route>
       <Route path="/character/:charId">
         <Redirect to="/" />
