@@ -1,6 +1,6 @@
 import { baseUrl, sendRequest } from './servicesCommon';
 
-export const getCharacters = (token) => {
+export const getCharactersReq = (token) => {
   const options = {
     method: 'GET',
     headers: { 'x-access-token': token },
@@ -8,7 +8,7 @@ export const getCharacters = (token) => {
   return sendRequest(baseUrl + '/characters', options);
 };
 
-export const addCharacter = (token, charId) => {
+export const addCharacterReq = (token, charId) => {
   const options = {
     method: 'PUT',
     headers: { 'x-access-token': token },
@@ -16,7 +16,7 @@ export const addCharacter = (token, charId) => {
   return sendRequest(`${baseUrl}/add-character/${charId}`, options);
 };
 
-export const removeCharacter = (token, charId) => {
+export const removeCharacterReq = (token, charId) => {
   const options = {
     method: 'PUT',
     headers: { 'x-access-token': token },
