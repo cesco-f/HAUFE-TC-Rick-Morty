@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -12,15 +12,19 @@ import NotFound from './components/NotFound/NotFound';
 
 import './App.scss';
 import { setValidToken } from './store/actions/tokenActions';
+import { getCharacters } from './store/actions/charactersActions';
 
 function App() {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token);
+  const [isTokenInit, setIsTokenInit] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
       dispatch(setValidToken(token));
+      dispatch(getCharacters(token));
+      setIsTokenInit(true);
     }
   }, [dispatch]);
 
@@ -67,7 +71,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      {token ? authRoutes : notAuthRoutes}
+      {isTokenInit && (token ? authRoutes : notAuthRoutes)}
     </div>
   );
 }

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { setValidToken } from '../../store/actions/tokenActions';
+import { getCharacters } from '../../store/actions/charactersActions';
 import { login } from './../../services/authAPI';
 
 import './Login.scss';
@@ -33,6 +34,7 @@ function Login() {
         } else {
           localStorage.setItem('token', res.accessToken);
           dispatch(setValidToken(res.accessToken));
+          dispatch(getCharacters(res.accessToken));
         }
       } catch (err) {
         alert('Invalid login');
