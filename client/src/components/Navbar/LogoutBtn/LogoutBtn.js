@@ -10,7 +10,7 @@ function LogoutBtn() {
   const history = useHistory();
 
   const logOut = () => {
-    localStorage.setItem('token', null);
+    localStorage.clear();
     dispatch(setInvalidToken());
     history.push('/');
   };

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Navbar from './components/Navbar/Navbar';
 import Welcome from './components/Welcome/Welcome';
@@ -11,9 +11,18 @@ import Login from './components/Login/Login';
 import NotFound from './components/NotFound/NotFound';
 
 import './App.scss';
+import { setValidToken } from './store/actions/tokenActions';
 
 function App() {
+  const dispatch = useDispatch();
   const token = useSelector((state) => state.token);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      dispatch(setValidToken(token));
+    }
+  }, [dispatch]);
 
   const authRoutes = (
     <Switch>
