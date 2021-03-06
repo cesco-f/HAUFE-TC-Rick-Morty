@@ -21,10 +21,10 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
+    setIsTokenInit(true);
     if (token) {
       dispatch(setValidToken(token));
       dispatch(getCharacters(token));
-      setIsTokenInit(true);
     }
   }, [dispatch]);
 
