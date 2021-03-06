@@ -18,8 +18,11 @@ export const getCharacters = (token) => {
 export const addCharacter = (token, charId) => {
   return (dispatch) => {
     addCharacterReq(token, charId)
-      .then((id) =>
-        dispatch({ type: actionTypes.ADD_CHARACTER_TO_FAV_LIST, payload: id }),
+      .then((res) =>
+        dispatch({
+          type: actionTypes.ADD_CHARACTER_TO_FAV_LIST,
+          payload: res.charId,
+        }),
       )
       .catch((err) => console.log('err :>> ', err));
   };
@@ -28,10 +31,10 @@ export const addCharacter = (token, charId) => {
 export const removeCharacter = (token, charId) => {
   return (dispatch) => {
     removeCharacterReq(token, charId)
-      .then((id) =>
+      .then((res) =>
         dispatch({
           type: actionTypes.REMOVE_CHARACTER_FROM_FAV_LIST,
-          payload: id,
+          payload: res.charId,
         }),
       )
       .catch((err) => console.log('err :>> ', err));
