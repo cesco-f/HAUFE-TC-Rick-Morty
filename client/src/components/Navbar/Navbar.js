@@ -1,24 +1,41 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
-import LoginBtn from './LoginBtn/LoginBtn';
-import LogoutBtn from './LogoutBtn/LogoutBtn';
-import RegisterBtn from './RegisterBtn/RegisterBtn';
+import { setInvalidToken } from '../../store/actions/tokenActions';
+
+import Button from './../UI/Button/Button';
 
 import './Navbar.scss';
 
 function Navbar() {
+  const dispatch = useDispatch();
   const token = useSelector((state) => state.token);
+  const history = useHistory();
+
+  const goToRegister = () => {
+    history.push('/register');
+  };
+
+  const goToLogIn = () => {
+    history.push('/login');
+  };
+
+  const logOut = () => {
+    localStorage.clear();
+    dispatch(setInvalidToken());
+    history.push('/');
+  };
 
   return (
     <div className="Navbar">
       <div className="Navbar-btns">
         {token ? (
-          <LogoutBtn />
+          <Button text="Logout" onClickCb={logOut} />
         ) : (
           <>
-            <LoginBtn />
-            <RegisterBtn />
+            <Button text="Login" onClickCb={goToLogIn} />
+            <Button text="Register" onClickCb={goToRegister} />
           </>
         )}
       </div>

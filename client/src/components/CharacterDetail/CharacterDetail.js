@@ -6,6 +6,8 @@ import {
   removeCharacter,
 } from './../../store/actions/charactersActions';
 
+import Button from './../UI/Button/Button';
+
 import './CharacterDetail.scss';
 
 function CharacterDetail() {
@@ -50,12 +52,12 @@ function CharacterDetail() {
             <img src={character.image} alt="character" />
           </div>
           {character.favList ? (
-            <button onClick={removeFromFavList}>Remove</button>
+            <Button text="Remove" onClickCb={removeFromFavList} />
           ) : (
-            <button onClick={addToFavList}>Add</button>
+            <Button text="Add" onClickCb={addToFavList} />
           )}
         </div>
-        <button onClick={goBack}>Go back</button>
+        <Button text="Go Back" onClickCb={goBack} />
       </div>
     )
   );

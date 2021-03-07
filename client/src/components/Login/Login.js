@@ -5,6 +5,8 @@ import { setValidToken } from '../../store/actions/tokenActions';
 import { getCharacters } from '../../store/actions/charactersActions';
 import { login } from './../../services/authAPI';
 
+import Button from './../UI/Button/Button';
+
 import './Login.scss';
 
 function Login() {
@@ -70,9 +72,7 @@ function Login() {
               placeholder="Insert a password..."
             />
           </div>
-          <button className="form_submit" type="submit">
-            Login
-          </button>
+          <Button text="Login" type="submit" />
         </form>
       </div>
     </div>

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { register } from './../../services/authAPI';
 
+import Button from './../UI/Button/Button';
+
 import './Register.scss';
 
 function Register() {
@@ -64,9 +66,7 @@ function Register() {
               placeholder="Insert a password..."
             />
           </div>
-          <button className="form_submit" type="submit">
-            Register
-          </button>
+          <Button text="Register" type="submit" />
         </form>
       </div>
     </div>

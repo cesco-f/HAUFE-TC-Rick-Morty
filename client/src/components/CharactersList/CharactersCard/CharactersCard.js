@@ -1,6 +1,8 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
+import Button from './../../UI/Button/Button';
+
 import './CharactersCard.scss';
 
 function CharactersCard({ character }) {
@@ -20,7 +22,7 @@ function CharactersCard({ character }) {
         {character.favList ? 'In fav list' : 'Not in fav list'}
       </div>
       <div className="CharactersCard-button">
-        <button onClick={goToDetails}>Go to details</button>
+        <Button text="Go to details" onClickCb={goToDetails} />
       </div>
     </div>
   );
