@@ -1,10 +1,10 @@
 import { baseUrl, sendRequest } from './servicesCommon';
 
-export const register = (username, email, password) => {
+export const register = (username, password) => {
   const options = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ username, email, password }),
+    body: JSON.stringify({ username, password }),
   };
   return sendRequest(baseUrl + '/register', options);
 };

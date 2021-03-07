@@ -6,7 +6,6 @@ import './Register.scss';
 function Register() {
   const initialState = {
     username: '',
-    email: '',
     password: '',
   };
 
@@ -19,10 +18,10 @@ function Register() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const { username, email, password } = state;
-    if (username && email && password) {
+    const { username, password } = state;
+    if (username && password) {
       try {
-        const res = await register(username, email, password);
+        const res = await register(username, password);
 
         if (res.status && res.status >= 400) {
           setState(initialState);
@@ -39,7 +38,7 @@ function Register() {
     }
   };
 
-  const { username, email, password } = state;
+  const { username, password } = state;
 
   return (
     <div className="Register">
@@ -53,16 +52,6 @@ function Register() {
               onChange={handleChange}
               value={username}
               placeholder="Insert a username..."
-            />
-          </div>
-          <div>
-            <label htmlFor="email">EMAIL </label>
-            <input
-              type="text"
-              name="email"
-              onChange={handleChange}
-              value={email}
-              placeholder="Insert a email..."
             />
           </div>
           <div>

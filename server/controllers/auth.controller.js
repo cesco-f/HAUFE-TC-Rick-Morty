@@ -9,7 +9,6 @@ const register = async (req, res) => {
   try {
     const user = new db.User({
       username: req.body.username,
-      email: req.body.email,
       password: bcrypt.hashSync(req.body.password, 8),
     });
 
@@ -50,7 +49,6 @@ const login = async (req, res) => {
     res.status(200).send({
       id: user._id,
       username: user.username,
-      email: user.email,
       accessToken: token,
     });
   } catch (error) {

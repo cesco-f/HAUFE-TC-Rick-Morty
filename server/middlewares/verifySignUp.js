@@ -1,24 +1,14 @@
 const db = require('../db');
 
-const checkDuplicateUsernameOrEmail = async (req, res, next) => {
+const checkDuplicateUsername = async (req, res, next) => {
   try {
     // Check username
-    let user = await db.User.findOne({
+    const user = await db.User.findOne({
       username: req.body.username,
     });
 
     if (user) {
       res.status(400).send({ message: 'Failed! Username is already in use!' });
-      return;
-    }
-
-    // Check email
-    user = await db.User.findOne({
-      email: req.body.email,
-    });
-
-    if (user) {
-      res.status(400).send({ message: 'Failed! Email is already in use!' });
       return;
     }
 
@@ -29,4 +19,4 @@ const checkDuplicateUsernameOrEmail = async (req, res, next) => {
   }
 };
 
-module.exports = { checkDuplicateUsernameOrEmail };
+module.exports = { checkDuplicateUsername };

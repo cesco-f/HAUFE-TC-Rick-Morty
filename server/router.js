@@ -5,10 +5,10 @@ const {
   addCharacter,
   removeCharacter,
 } = require('./controllers/characters.controller');
-const { checkDuplicateUsernameOrEmail } = require('./middlewares/verifySignUp');
+const { checkDuplicateUsername } = require('./middlewares/verifySignUp');
 const { verifyToken } = require('./middlewares/authJwt');
 
-router.post('/register', checkDuplicateUsernameOrEmail, register);
+router.post('/register', checkDuplicateUsername, register);
 router.post('/login', login);
 router.get('/characters', verifyToken, getCharacters);
 router.put('/add-character/:charId', verifyToken, addCharacter);
