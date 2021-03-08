@@ -4,11 +4,10 @@ const initialCharacters = null;
 export const charactersReducer = (state = initialCharacters, action) => {
   switch (action.type) {
     case actionTypes.SET_CHARACTERS: {
-      const normCharacters = {};
-      for (const character of action.payload) {
-        normCharacters[character.id] = { ...character };
-      }
-      return normCharacters;
+      return action.payload.reduce((data, item) => {
+        data[item.id] = item;
+        return data;
+      }, {});
     }
     case actionTypes.ADD_CHARACTER_TO_FAV_LIST: {
       return {
