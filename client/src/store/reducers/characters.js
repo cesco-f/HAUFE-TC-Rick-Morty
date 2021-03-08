@@ -11,20 +11,16 @@ export const charactersReducer = (state = initialCharacters, action) => {
       return normCharacters;
     }
     case actionTypes.ADD_CHARACTER_TO_FAV_LIST: {
-      const characters = { ...state };
-      characters[action.payload] = {
-        ...characters[action.payload],
-        favList: true,
+      return {
+        ...state,
+        [action.payload]: { ...state[action.payload], favList: true },
       };
-      return characters;
     }
     case actionTypes.REMOVE_CHARACTER_FROM_FAV_LIST: {
-      const characters = { ...state };
-      characters[action.payload] = {
-        ...characters[action.payload],
-        favList: false,
+      return {
+        ...state,
+        [action.payload]: { ...state[action.payload], favList: false },
       };
-      return characters;
     }
     default:
       return state;
