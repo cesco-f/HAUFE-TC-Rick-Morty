@@ -10,6 +10,7 @@ import { charactersReducer } from './store/reducers/characters';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import './fonts/get_schwifty.ttf';
 import './styles/index.sass';
 
 const reducer = combineReducers({

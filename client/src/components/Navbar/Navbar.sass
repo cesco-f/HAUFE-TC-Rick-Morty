@@ -1,17 +1,30 @@
-@import './../../styles/variables'
-
 .Navbar
   height: $navbar-height
-  border: 1px solid black
   display: flex
-  justify-content: center
+  justify-content: space-between
   align-items: center
+  background-color: $navbar-color
 
-  &-btns
-    height: 50%
-    width: 50%
-    border: 1px solid black
+  &-icon-container
+    width: $navbar-el-width
+    text-align: center
+    &-img
+      width: 12rem
+      height: 7rem
+
+  &-writing-container
+    width: $navbar-el-width
+    text-align: center
+    &-img
+      width: 20rem
+
+  &-links
+    width: $navbar-el-width
     display: flex
     flex-direction: row
     justify-content: space-around
     align-items: center
+    &-el
+      color: $navbar-links-color
+      &:hover
+        border-bottom: 1px solid $navbar-links-color
