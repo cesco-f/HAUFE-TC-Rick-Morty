@@ -25,11 +25,11 @@ function Register() {
       try {
         const res = await register(username, password);
 
+        setState(initialState);
+
         if (res.status && res.status >= 400) {
-          setState(initialState);
           throw new Error();
         } else {
-          setState(initialState);
           alert('User registered');
         }
       } catch (err) {
