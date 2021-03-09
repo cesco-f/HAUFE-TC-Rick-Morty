@@ -3,8 +3,6 @@ import { register } from './../../services/authAPI';
 
 import Button from './../UI/Button/Button';
 
-import './Register.scss';
-
 function Register() {
   const initialState = {
     username: '',

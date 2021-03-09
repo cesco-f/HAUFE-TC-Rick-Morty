@@ -7,8 +7,6 @@ import { login } from './../../services/authAPI';
 
 import Button from './../UI/Button/Button';
 
-import './Login.scss';
-
 function Login() {
   const dispatch = useDispatch();
 

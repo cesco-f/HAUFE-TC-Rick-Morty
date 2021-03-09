@@ -8,8 +8,6 @@ import {
 
 import Button from './../UI/Button/Button';
 
-import './CharacterDetail.scss';
-
 function CharacterDetail() {
   const { charId } = useParams();
   const token = useSelector((state) => state.token);

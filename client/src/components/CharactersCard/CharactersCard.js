@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import './CharactersCard.scss';
-
 function CharactersCard({ character }) {
   return (
     <Link to={`/character/${character.id}`}>

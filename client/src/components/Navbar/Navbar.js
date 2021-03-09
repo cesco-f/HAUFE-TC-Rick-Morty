@@ -6,8 +6,6 @@ import { setInvalidToken } from '../../store/actions/tokenActions';
 
 import Button from './../UI/Button/Button';
 
-import './Navbar.scss';
-
 function Navbar() {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token);

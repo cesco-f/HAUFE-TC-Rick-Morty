@@ -10,7 +10,6 @@ import Register from './components/Register/Register';
 import Login from './components/Login/Login';
 import NotFound from './components/NotFound/NotFound';
 
-import './App.scss';
 import { setValidToken } from './store/actions/tokenActions';
 import { getCharacters } from './store/actions/charactersActions';
 
