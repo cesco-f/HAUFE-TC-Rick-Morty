@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { register } from './../../services/authAPI';
+
+import { loginHelper } from './../../helper/login.helper';
 
 import Form from './../Form/Form';
 
 function Register() {
+  const dispatch = useDispatch();
+
   const initialState = {
     username: '',
     password: '',
@@ -22,11 +27,11 @@ function Register() {
     if (username && password) {
       try {
         await register(username, password);
+        await loginHelper(username, password, dispatch);
         setState(initialState);
-        alert('User registered');
       } catch (err) {
         setState(initialState);
-        alert('An error occured');
+        alert('Username already in used');
       }
     } else {
       alert('Please fill everthing');

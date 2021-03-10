@@ -10,9 +10,7 @@ import Login from './components/Login/Login';
 import NotFound from './components/NotFound/NotFound';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 
-import { setValidToken } from './store/actions/tokenActions';
-import { getCharacters } from './store/actions/charactersActions';
-import { getUser } from './store/actions/userActions';
+import { loginActions } from './helper/login.helper';
 
 function App() {
   const dispatch = useDispatch();
@@ -23,9 +21,7 @@ function App() {
     const token = localStorage.getItem('token');
     setIsTokenInit(true);
     if (token) {
-      dispatch(setValidToken(token));
-      dispatch(getCharacters(token));
-      dispatch(getUser(token));
+      loginActions(dispatch, token);
     }
   }, [dispatch]);
 

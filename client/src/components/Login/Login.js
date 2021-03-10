@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { setValidToken } from '../../store/actions/tokenActions';
-import { getCharacters } from '../../store/actions/charactersActions';
-import { getUser } from '../../store/actions/userActions';
-import { login } from './../../services/authAPI';
+import { loginHelper } from './../../helper/login.helper';
 
 import Form from './../Form/Form';
 
@@ -27,17 +24,8 @@ function Login() {
     event.preventDefault();
     const { username, password } = state;
     if (username && password) {
-      try {
-        const res = await login(username, password);
-        setState(initialState);
-        localStorage.setItem('token', res.accessToken);
-        dispatch(setValidToken(res.accessToken));
-        dispatch(getCharacters(res.accessToken));
-        dispatch(getUser(res.accessToken));
-      } catch (err) {
-        setState(initialState);
-        alert('Invalid login');
-      }
+      loginHelper(username, password, dispatch);
+      setState(initialState);
     } else {
       alert('Please fill everthing');
     }
