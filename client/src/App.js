@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Navbar from './components/Navbar/Navbar';
-import Welcome from './components/Welcome/Welcome';
 import CharactersList from './components/CharactersList/CharactersList';
 import CharacterDetail from './components/CharacterDetail/CharacterDetail';
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
 import NotFound from './components/NotFound/NotFound';
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 
 import { setValidToken } from './store/actions/tokenActions';
 import { getCharacters } from './store/actions/charactersActions';
@@ -29,50 +29,38 @@ function App() {
     }
   }, [dispatch]);
 
-  const authRoutes = (
-    <Switch>
-      <Route exact path="/">
-        <CharactersList />
-      </Route>
-      <Route path="/register">
-        <Redirect to="/" />
-      </Route>
-      <Route path="/login">
-        <Redirect to="/" />
-      </Route>
-      <Route path="/character/:charId">
-        <CharacterDetail />
-      </Route>
-      <Route path="*">
-        <NotFound />
-      </Route>
-    </Switch>
-  );
-
-  const notAuthRoutes = (
-    <Switch>
-      <Route exact path="/">
-        <Welcome />
-      </Route>
-      <Route path="/register">
-        <Register />
-      </Route>
-      <Route path="/login">
-        <Login />
-      </Route>
-      <Route path="/character/:charId">
-        <Redirect to="/" />
-      </Route>
-      <Route path="*">
-        <NotFound />
-      </Route>
-    </Switch>
-  );
-
   return (
     <div className="App">
       <Navbar />
-      {isTokenInit && (token ? authRoutes : notAuthRoutes)}
+      {isTokenInit && (
+        <Switch>
+          <ProtectedRoute exact path="/" redirect="/login" canAccess={token}>
+            <CharactersList />
+          </ProtectedRoute>
+          <ProtectedRoute
+            exact
+            path="/register"
+            redirect="/"
+            canAccess={!token}
+          >
+            <Register />
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/login" redirect="/" canAccess={!token}>
+            <Login />
+          </ProtectedRoute>
+          <ProtectedRoute
+            exact
+            path="/character/:charId"
+            redirect="/login"
+            canAccess={token}
+          >
+            <CharacterDetail />
+          </ProtectedRoute>
+          <Route path="*">
+            <NotFound />
+          </Route>
+        </Switch>
+      )}
     </div>
   );
 }
