@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node --trace-warnings index.js",
-    "start:dev": "nodemon --trace-warnings index.js"
+    "start:dev": "nodemon --trace-warnings index.js",
+    "test": "jest --setupFiles dotenv/config --testEnvironment=node --detectOpenHandles",
+    "test:watch": "jest --setupFiles dotenv/config --testEnvironment=node --detectOpenHandles --watch"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +22,8 @@
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "jest": "^26.6.3",
+    "nodemon": "^2.0.7",
+    "supertest": "^6.1.3"
   }
 }
