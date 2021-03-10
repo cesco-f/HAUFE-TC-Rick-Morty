@@ -37,19 +37,13 @@ function App() {
           <ProtectedRoute exact path="/" redirect="/login" canAccess={token}>
             <CharactersList />
           </ProtectedRoute>
-          <ProtectedRoute
-            exact
-            path="/register"
-            redirect="/"
-            canAccess={!token}
-          >
+          <ProtectedRoute path="/register" redirect="/" canAccess={!token}>
             <Register />
           </ProtectedRoute>
-          <ProtectedRoute exact path="/login" redirect="/" canAccess={!token}>
+          <ProtectedRoute path="/login" redirect="/" canAccess={!token}>
             <Login />
           </ProtectedRoute>
           <ProtectedRoute
-            exact
             path="/character/:charId"
             redirect="/login"
             canAccess={token}
