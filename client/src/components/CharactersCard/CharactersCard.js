@@ -9,11 +9,13 @@ function CharactersCard({ character }) {
     <Link to={`/character/${character.id}`}>
       <div className="CharactersCard">
         <div className="CharactersCard-name">{character.name}</div>
-        <div className="CharactersCard-image">
-          <img src={character.image} alt="character" />
-        </div>
+        <img
+          className="CharactersCard-image"
+          src={character.image}
+          alt="character"
+        />
         <div className="CharactersCard-favList">
-          {user.favList.has(character.id) ? 'In fav list' : 'Not in fav list'}
+          Favorite list: {user.favList.has(character.id) ? '👍🏻' : '👎🏼'}
         </div>
       </div>
     </Link>
