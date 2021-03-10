@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { register } from './../../services/authAPI';
 
-import Button from './../UI/Button/Button';
+import Form from './../Form/Form';
 
 function Register() {
   const initialState = {
@@ -41,33 +41,13 @@ function Register() {
   const { username, password } = state;
 
   return (
-    <div className="Register">
-      <div className="Register-form-container">
-        <form className="Register-form" onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="username">USERNAME</label>
-            <input
-              type="text"
-              name="username"
-              onChange={handleChange}
-              value={username}
-              placeholder="Insert a username..."
-            />
-          </div>
-          <div>
-            <label htmlFor="password">PASSWORD </label>
-            <input
-              type="password"
-              name="password"
-              onChange={handleChange}
-              value={password}
-              placeholder="Insert a password..."
-            />
-          </div>
-          <Button text="Register" type="submit" />
-        </form>
-      </div>
-    </div>
+    <Form
+      handleSubmit={handleSubmit}
+      handleChange={handleChange}
+      username={username}
+      password={password}
+      btnText="Register"
+    />
   );
 }
 

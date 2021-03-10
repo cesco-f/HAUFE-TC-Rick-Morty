@@ -6,7 +6,7 @@ import { getCharacters } from '../../store/actions/charactersActions';
 import { getUser } from '../../store/actions/userActions';
 import { login } from './../../services/authAPI';
 
-import Button from './../UI/Button/Button';
+import Form from './../Form/Form';
 
 function Login() {
   const dispatch = useDispatch();
@@ -49,33 +49,13 @@ function Login() {
   const { username, password } = state;
 
   return (
-    <div className="Login">
-      <div className="Login-form-container">
-        <form className="Login-form" onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="username">USERNAME</label>
-            <input
-              type="text"
-              name="username"
-              onChange={handleChange}
-              value={username}
-              placeholder="Insert a username..."
-            />
-          </div>
-          <div>
-            <label htmlFor="password">PASSWORD </label>
-            <input
-              type="password"
-              name="password"
-              onChange={handleChange}
-              value={password}
-              placeholder="Insert a password..."
-            />
-          </div>
-          <Button text="Login" type="submit" />
-        </form>
-      </div>
-    </div>
+    <Form
+      handleSubmit={handleSubmit}
+      handleChange={handleChange}
+      username={username}
+      password={password}
+      btnText="Login"
+    />
   );
 }
 
