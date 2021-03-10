@@ -21,16 +21,11 @@ function Register() {
     const { username, password } = state;
     if (username && password) {
       try {
-        const res = await register(username, password);
-
+        await register(username, password);
         setState(initialState);
-
-        if (res.status && res.status >= 400) {
-          throw new Error();
-        } else {
-          alert('User registered');
-        }
+        alert('User registered');
       } catch (err) {
+        setState(initialState);
         alert('An error occured');
       }
     } else {

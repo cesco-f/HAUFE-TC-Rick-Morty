@@ -18,7 +18,7 @@ export const addCharacter = (token, charId) => {
     addCharacterReq(token, charId)
       .then((user) =>
         dispatch({
-          type: actionTypes.ADD_CHARACTER_TO_FAV_LIST,
+          type: actionTypes.SET_USER,
           payload: user,
         }),
       )
@@ -31,7 +31,7 @@ export const removeCharacter = (token, charId) => {
     removeCharacterReq(token, charId)
       .then((user) =>
         dispatch({
-          type: actionTypes.REMOVE_CHARACTER_FROM_FAV_LIST,
+          type: actionTypes.SET_USER,
           payload: user,
         }),
       )

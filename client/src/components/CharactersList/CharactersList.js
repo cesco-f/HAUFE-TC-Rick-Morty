@@ -11,8 +11,8 @@ function CharactersList() {
       <h1 className="CharactersList-container-title">Characters</h1>
       <div className="CharactersList-container-list">
         {characters &&
-          Object.keys(characters).map((key) => (
-            <CharactersCard key={key} character={characters[key]} />
+          Object.entries(characters).map(([id, character]) => (
+            <CharactersCard key={id} character={character} />
           ))}
       </div>
     </div>

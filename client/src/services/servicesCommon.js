@@ -8,10 +8,10 @@ export function sendRequest(url, options) {
       if (res.status < 400) {
         return res.json();
       }
-      return res;
+      throw new Error();
     })
     .catch((err) => {
       console.error(err);
-      return Promise.reject();
+      return Promise.reject(err);
     });
 }

@@ -30,15 +30,12 @@ function Login() {
       try {
         const res = await login(username, password);
         setState(initialState);
-        if (res.status && res.status >= 400) {
-          throw new Error();
-        } else {
-          localStorage.setItem('token', res.accessToken);
-          dispatch(setValidToken(res.accessToken));
-          dispatch(getCharacters(res.accessToken));
-          dispatch(getUser(res.accessToken));
-        }
+        localStorage.setItem('token', res.accessToken);
+        dispatch(setValidToken(res.accessToken));
+        dispatch(getCharacters(res.accessToken));
+        dispatch(getUser(res.accessToken));
       } catch (err) {
+        setState(initialState);
         alert('Invalid login');
       }
     } else {
