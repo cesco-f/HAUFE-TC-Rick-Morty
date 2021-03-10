@@ -34,26 +34,36 @@ function CharacterDetail() {
     character && (
       <div className="CharacterDetailContainer">
         <div className="CharacterDetail">
-          <div className="CharacterDetail-name">Name: {character.name}</div>
-          <div className="CharacterDetail-location">
-            Location: {character.location.name}
+          <div className="CharacterDetail-entry">
+            <span className="Entry">Name: </span>{' '}
+            <span className="Value">{character.name}</span>
           </div>
-          <div className="CharacterDetail-status">
-            Status: {character.status}
+          <div className="CharacterDetail-entry">
+            <span className="Entry">Location: </span>{' '}
+            <span className="Value">{character.location.name}</span>
           </div>
-          <div className="CharacterDetail-species">
-            Species: {character.species}
+          <div className="CharacterDetail-entry">
+            <span className="Entry">Status: </span>{' '}
+            <span className="Value">{character.status}</span>
           </div>
-          <div className="CharacterDetail-origin">
-            Origin: {character.origin.name}
+          <div className="CharacterDetail-entry">
+            <span className="Entry">Species: </span>{' '}
+            <span className="Value">{character.species}</span>
+          </div>
+          <div className="CharacterDetail-entry">
+            <span className="Entry">Origin: </span>{' '}
+            <span className="Value">{character.origin.name}</span>
           </div>
           <div className="CharacterDetail-image">
             <img src={character.image} alt="character" />
           </div>
           {user.favList.has(+charId) ? (
-            <Button text="Remove" onClickCb={removeFromFavList} />
+            <Button
+              text="Remove from favorites"
+              onClickCb={removeFromFavList}
+            />
           ) : (
-            <Button text="Add" onClickCb={addToFavList} />
+            <Button text="Add to favorites" onClickCb={addToFavList} />
           )}
         </div>
         <Button text="Go Back" onClickCb={goBack} />

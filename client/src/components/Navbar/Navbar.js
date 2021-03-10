@@ -19,11 +19,13 @@ function Navbar() {
   return (
     <div className="Navbar">
       <div className="Navbar-icon-container">
-        <img
-          className="Navbar-icon-container-img"
-          alt="navbar-icon"
-          src={navbarIcon}
-        />
+        <Link to="/">
+          <img
+            className="Navbar-icon-container-img"
+            alt="navbar-icon"
+            src={navbarIcon}
+          />
+        </Link>
       </div>
       <div className="Navbar-writing-container">
         <img

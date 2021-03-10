@@ -15,7 +15,7 @@ function CharactersCard({ character }) {
           alt="character"
         />
         <div className="CharactersCard-favList">
-          Favorite list: {user.favList.has(character.id) ? '👍🏻' : '👎🏼'}
+          Favorite list: {user.favList.has(character.id) ? '👍🏼' : '👎🏼'}
         </div>
       </div>
     </Link>
