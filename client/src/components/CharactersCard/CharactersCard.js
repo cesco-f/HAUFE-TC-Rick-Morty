@@ -1,7 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function CharactersCard({ character }) {
+  const user = useSelector((state) => state.user);
+
   return (
     <Link to={`/character/${character.id}`}>
       <div className="CharactersCard">
@@ -10,7 +13,7 @@ function CharactersCard({ character }) {
           <img src={character.image} alt="character" />
         </div>
         <div className="CharactersCard-favList">
-          {character.favList ? 'In fav list' : 'Not in fav list'}
+          {user.favList.has(character.id) ? 'In fav list' : 'Not in fav list'}
         </div>
       </div>
     </Link>

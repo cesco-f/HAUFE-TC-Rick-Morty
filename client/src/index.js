@@ -6,6 +6,7 @@ import thunk from 'redux-thunk';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { tokenReducer } from './store/reducers/token';
 import { charactersReducer } from './store/reducers/characters';
+import { userReducer } from './store/reducers/user';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -16,6 +17,7 @@ import './styles/index.sass';
 const reducer = combineReducers({
   token: tokenReducer,
   characters: charactersReducer,
+  user: userReducer,
 });
 
 const store = createStore(reducer, applyMiddleware(thunk));

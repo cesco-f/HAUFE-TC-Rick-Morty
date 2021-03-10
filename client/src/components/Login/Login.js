@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { setValidToken } from '../../store/actions/tokenActions';
 import { getCharacters } from '../../store/actions/charactersActions';
+import { getUser } from '../../store/actions/userActions';
 import { login } from './../../services/authAPI';
 
 import Button from './../UI/Button/Button';
@@ -35,6 +36,7 @@ function Login() {
           localStorage.setItem('token', res.accessToken);
           dispatch(setValidToken(res.accessToken));
           dispatch(getCharacters(res.accessToken));
+          dispatch(getUser(res.accessToken));
         }
       } catch (err) {
         alert('Invalid login');

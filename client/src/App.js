@@ -12,6 +12,7 @@ import NotFound from './components/NotFound/NotFound';
 
 import { setValidToken } from './store/actions/tokenActions';
 import { getCharacters } from './store/actions/charactersActions';
+import { getUser } from './store/actions/userActions';
 
 function App() {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ function App() {
     if (token) {
       dispatch(setValidToken(token));
       dispatch(getCharacters(token));
+      dispatch(getUser(token));
     }
   }, [dispatch]);
 

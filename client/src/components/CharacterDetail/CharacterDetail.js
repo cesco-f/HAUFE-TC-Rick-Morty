@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   addCharacter,
   removeCharacter,
-} from './../../store/actions/charactersActions';
+} from './../../store/actions/userActions';
 
 import Button from './../UI/Button/Button';
 
@@ -12,6 +12,7 @@ function CharacterDetail() {
   const { charId } = useParams();
   const token = useSelector((state) => state.token);
   const characters = useSelector((state) => state.characters);
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -49,7 +50,7 @@ function CharacterDetail() {
           <div className="CharacterDetail-image">
             <img src={character.image} alt="character" />
           </div>
-          {character.favList ? (
+          {user.favList.has(+charId) ? (
             <Button text="Remove" onClickCb={removeFromFavList} />
           ) : (
             <Button text="Add" onClickCb={addToFavList} />
