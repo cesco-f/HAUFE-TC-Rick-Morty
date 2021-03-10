@@ -5,8 +5,8 @@ const db = {};
 const dbHost = process.env.DB_HOST || 'localhost';
 const dbPort = process.env.DB_PORT || 27017;
 const dbName = isTest
-  ? process.env.DB_NAME || 'very_long_db_name'
-  : process.env.DB_NAME_TEST || 'very_long_db_name_test';
+  ? process.env.DB_NAME_TEST || 'very_long_db_name_test'
+  : process.env.DB_NAME || 'very_long_db_name';
 
 db.connect = function () {
   return mongoose.connect(`mongodb://${dbHost}:${dbPort}/${dbName}`, {
