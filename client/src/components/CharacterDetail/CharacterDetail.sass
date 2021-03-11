@@ -8,20 +8,36 @@
 .CharacterDetail
   border: 1px solid white
   border-radius: $default-border-radius
-  width: 60rem
   display: flex
-  flex-direction: column
+  width: 85rem
+  height: 40rem
+  padding: 3rem
   justify-content: space-between
   align-items: center
-  height: 85%
-  padding: 1rem
-  &-entry
-    width: 100%
-    text-align: left
+  background-color: $color-dark-grey
+  &-image
+    border-radius: 7rem
+  &-details
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    height: 100%
+    width: 55%
+    &-name
+      width: 80%
+      font-size: 4rem
+      color: $color-green
+      text-align: center
+    &-entry
+      width: 100%
+      text-align: left
 
-  .Entry
-    font-size: 3rem
-    font-weight: 600
+.Entry
+  font-size: 3rem
+  font-weight: 600
 
-  .Value
-    font-size: 2rem
+.Value
+  font-size: 2rem
+
+.Center
+  align-self: center
