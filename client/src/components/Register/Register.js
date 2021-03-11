@@ -31,7 +31,7 @@ function Register() {
         setState(initialState);
       } catch (err) {
         setState(initialState);
-        alert('Username already in used');
+        alert('Username already in use');
       }
     } else {
       alert('Please fill everthing');
