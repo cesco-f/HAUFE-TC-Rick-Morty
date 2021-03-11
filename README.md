@@ -1,5 +1,7 @@
 # Rick & Morty Application - Francesco Fagnani
-<img src="./client/src/assets/rick_morty_writing.png"/>
+<p align="center">
+  <img src="./client/src/assets/rick_morty_writing.png"/>
+</p>
 
 ## Getting started
 
@@ -23,14 +25,15 @@ $ npm i
 Create a ```.env```  in both server and client folders following the ```.env.example``` files inside the two folders.
 
 ## Running the app
+Open an additional terminal.
 
-Open one terminal and run the following:
+In the first terminal run the following:
 
 ```bash
 $ cd server
 $ npm run start
 ```
-Open another terminal and run the following:
+In the second one run the following:
 
 ```bash
 $ cd client
