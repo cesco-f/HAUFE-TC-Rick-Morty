@@ -8,14 +8,14 @@ function CharactersCard({ character }) {
   return (
     <Link to={`/character/${character.id}`}>
       <div className="CharactersCard">
-        <div className="CharactersCard-name">{character.name}</div>
         <img
           className="CharactersCard-image"
           src={character.image}
           alt="character"
         />
+        <div className="CharactersCard-name">{character.name}</div>
         <div className="CharactersCard-favList">
-          Favorite list: {user.favList.has(character.id) ? '👍🏼' : '👎🏼'}
+          Favorite list: {user && user.favList.has(character.id) ? '👍🏼' : '👎🏼'}
         </div>
       </div>
     </Link>
