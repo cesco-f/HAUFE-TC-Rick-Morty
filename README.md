@@ -3,7 +3,7 @@
 
 ## Getting started
 
-This project uses a MongoDB database, makes sure you have MongoDB installed and running.
+This project uses a MongoDB database, make sure to have MongoDB installed and running.
 
 More information on how to install MongoDB [here](https://docs.mongodb.com/guides/server/install/).
 
