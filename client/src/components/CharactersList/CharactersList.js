@@ -1,10 +1,10 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useContext } from 'react';
+import CharactersContext from './../../context/CharactersContext';
 
 import CharactersCard from './../CharactersCard/CharactersCard';
 
 function CharactersList() {
-  const characters = useSelector((state) => state.characters);
+  const { characters } = useContext(CharactersContext);
 
   return (
     <div className="CharactersList-container">

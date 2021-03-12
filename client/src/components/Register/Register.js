@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useContext } from 'react';
 import { register } from './../../services/authAPI';
 
 import { loginHelper } from './../../helper/login.helper';
 
+import CharactersContext from './../../context/CharactersContext';
+import TokenContext from './../../context/TokenContext';
+import UserContext from './../../context/UserContext';
+
 import Form from './../Form/Form';
 
 function Register() {
-  const dispatch = useDispatch();
+  const { setCharacters } = useContext(CharactersContext);
+  const { setToken } = useContext(TokenContext);
+  const { setUser } = useContext(UserContext);
 
   const initialState = {
     username: '',
@@ -27,7 +32,7 @@ function Register() {
     if (username && password) {
       try {
         await register(username, password);
-        await loginHelper(username, password, dispatch);
+        await loginHelper(username, password, setCharacters, setToken, setUser);
         setState(initialState);
       } catch (err) {
         setState(initialState);

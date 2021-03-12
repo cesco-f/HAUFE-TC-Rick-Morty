@@ -1,19 +1,17 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-import { setInvalidToken } from '../../store/actions/tokenActions';
+import TokenContext from './../../context/TokenContext';
 
 import navbarIcon from './../../assets/rick_morty_nav.png';
 import writing from './../../assets/rick_morty_writing.png';
 
 function Navbar() {
-  const dispatch = useDispatch();
-  const token = useSelector((state) => state.token);
+  const { token, setToken } = useContext(TokenContext);
 
   const logOut = () => {
     localStorage.clear();
-    dispatch(setInvalidToken());
+    setToken(null);
   };
 
   return (

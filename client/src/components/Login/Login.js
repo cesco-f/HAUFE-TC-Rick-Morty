@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useContext } from 'react';
 
 import { loginHelper } from './../../helper/login.helper';
+
+import CharactersContext from './../../context/CharactersContext';
+import TokenContext from './../../context/TokenContext';
+import UserContext from './../../context/UserContext';
 
 import Form from './../Form/Form';
 
 function Login() {
-  const dispatch = useDispatch();
+  const { setCharacters } = useContext(CharactersContext);
+  const { setToken } = useContext(TokenContext);
+  const { setUser } = useContext(UserContext);
 
   const initialState = {
     username: '',
@@ -24,7 +29,7 @@ function Login() {
     event.preventDefault();
     const { username, password } = state;
     if (username && password) {
-      loginHelper(username, password, dispatch);
+      loginHelper(username, password, setCharacters, setToken, setUser);
       setState(initialState);
     } else {
       alert('Please fill everthing');

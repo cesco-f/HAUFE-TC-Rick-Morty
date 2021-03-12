@@ -1,20 +1,34 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import {
-  addCharacter,
-  removeCharacter,
-} from './../../store/actions/userActions';
-
+import { addCharacterReq, removeCharacterReq } from './../../services/userAPI';
 import Button from './../UI/Button/Button';
+import UserContext from './../../context/UserContext';
+import TokenContext from './../../context/TokenContext';
+import CharactersContext from './../../context/CharactersContext';
 
 function CharacterDetail() {
   const { charId } = useParams();
-  const token = useSelector((state) => state.token);
-  const character = useSelector((state) => state.characters[charId]);
-  const user = useSelector((state) => state.user);
-  const dispatch = useDispatch();
+  const { user, setUser } = useContext(UserContext);
+  const { token } = useContext(TokenContext);
+  const { characters } = useContext(CharactersContext);
+
+  const character = characters && characters[charId];
+
   const history = useHistory();
+
+  const addCharacter = () => {
+    addCharacterReq(token, charId)
+      .then((user) => {
+        setUser(user);
+      })
+      .catch((err) => console.log('err :>> ', err));
+  };
+
+  const removeCharacter = () => {
+    removeCharacterReq(token, charId)
+      .then((user) => setUser(user))
+      .catch((err) => console.log('err :>> ', err));
+  };
 
   return character ? (
     <div className="CharacterDetailContainer">
@@ -48,17 +62,10 @@ function CharacterDetail() {
             {user.favList.has(+charId) ? (
               <Button
                 text="Remove from favorites"
-                onClickCb={() => {
-                  dispatch(removeCharacter(token, charId));
-                }}
+                onClickCb={removeCharacter}
               />
             ) : (
-              <Button
-                text="Add to favorites"
-                onClickCb={() => {
-                  dispatch(addCharacter(token, charId));
-                }}
-              />
+              <Button text="Add to favorites" onClickCb={addCharacter} />
             )}
           </div>
         </div>

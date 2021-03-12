@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
 
 import Navbar from './components/Navbar/Navbar';
 import CharactersList from './components/CharactersList/CharactersList';
@@ -10,48 +9,100 @@ import Login from './components/Login/Login';
 import NotFound from './components/NotFound/NotFound';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 
+import UserContext from './context/UserContext';
+import CharactersContext from './context/CharactersContext';
+import TokenContext from './context/TokenContext';
+
 import { loginActions } from './helper/login.helper';
 
 function App() {
-  const dispatch = useDispatch();
-  const token = useSelector((state) => state.token);
+  const [userState, setUserState] = useState({
+    user: null,
+    setUser: (user) =>
+      setUserState({
+        ...userState,
+        user: { ...user, favList: new Set(user.favList) },
+      }),
+  });
+
+  const [tokenState, setTokenState] = useState({
+    token: null,
+    setToken: (token) => setTokenState({ ...tokenState, token: token }),
+  });
+
+  const [charactersState, setCharactersState] = useState({
+    characters: null,
+    setCharacters: (characters) =>
+      setCharactersState({
+        ...charactersState,
+        characters: characters.reduce((acc, item) => {
+          acc[item.id] = item;
+          return acc;
+        }, {}),
+      }),
+  });
+
   const [isTokenInit, setIsTokenInit] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     setIsTokenInit(true);
     if (token) {
-      loginActions(dispatch, token);
+      loginActions(
+        token,
+        charactersState.setCharacters,
+        tokenState.setToken,
+        userState.setUser,
+      );
     }
-  }, [dispatch]);
+  }, [charactersState.setCharacters, tokenState.setToken, userState.setUser]);
 
   return (
-    <div className="App">
-      <Navbar />
-      {isTokenInit && (
-        <Switch>
-          <ProtectedRoute exact path="/" redirect="/login" canAccess={token}>
-            <CharactersList />
-          </ProtectedRoute>
-          <ProtectedRoute path="/register" redirect="/" canAccess={!token}>
-            <Register />
-          </ProtectedRoute>
-          <ProtectedRoute path="/login" redirect="/" canAccess={!token}>
-            <Login />
-          </ProtectedRoute>
-          <ProtectedRoute
-            path="/character/:charId"
-            redirect="/login"
-            canAccess={token}
-          >
-            <CharacterDetail />
-          </ProtectedRoute>
-          <Route path="*">
-            <NotFound />
-          </Route>
-        </Switch>
-      )}
-    </div>
+    <UserContext.Provider value={userState}>
+      <CharactersContext.Provider value={charactersState}>
+        <TokenContext.Provider value={tokenState}>
+          <div className="App">
+            <Navbar />
+            {isTokenInit && (
+              <Switch>
+                <ProtectedRoute
+                  exact
+                  path="/"
+                  redirect="/login"
+                  canAccess={tokenState.token}
+                >
+                  <CharactersList />
+                </ProtectedRoute>
+                <ProtectedRoute
+                  path="/register"
+                  redirect="/"
+                  canAccess={!tokenState.token}
+                >
+                  <Register />
+                </ProtectedRoute>
+                <ProtectedRoute
+                  path="/login"
+                  redirect="/"
+                  canAccess={!tokenState.token}
+                >
+                  <Login />
+                </ProtectedRoute>
+                <ProtectedRoute
+                  path="/character/:charId"
+                  redirect="/login"
+                  canAccess={tokenState.token}
+                >
+                  <CharacterDetail />
+                </ProtectedRoute>
+                <Route path="*">
+                  <NotFound />
+                </Route>
+              </Switch>
+            )}
+          </div>
+        </TokenContext.Provider>
+      </CharactersContext.Provider>
+    </UserContext.Provider>
   );
 }
 
