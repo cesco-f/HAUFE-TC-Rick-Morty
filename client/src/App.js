@@ -15,32 +15,14 @@ import TokenContext from './context/TokenContext';
 
 import { loginActions } from './helper/login.helper';
 
+import useUser from './hooks/useUser';
+import useToken from './hooks/useToken';
+import useCharacters from './hooks/useCharacters';
+
 function App() {
-  const [userState, setUserState] = useState({
-    user: null,
-    setUser: (user) =>
-      setUserState({
-        ...userState,
-        user: { ...user, favList: new Set(user.favList) },
-      }),
-  });
-
-  const [tokenState, setTokenState] = useState({
-    token: null,
-    setToken: (token) => setTokenState({ ...tokenState, token: token }),
-  });
-
-  const [charactersState, setCharactersState] = useState({
-    characters: null,
-    setCharacters: (characters) =>
-      setCharactersState({
-        ...charactersState,
-        characters: characters.reduce((acc, item) => {
-          acc[item.id] = item;
-          return acc;
-        }, {}),
-      }),
-  });
+  const userState = useUser();
+  const tokenState = useToken();
+  const charactersState = useCharacters();
 
   const [isTokenInit, setIsTokenInit] = useState(false);
 
