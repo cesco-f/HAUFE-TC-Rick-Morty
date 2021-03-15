@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import { UserProvider } from './context/UserContext';
 import { TokenProvider } from './context/TokenContext';
+import { CharactersProvider } from './context/CharactersContext';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
@@ -14,9 +15,11 @@ ReactDOM.render(
   <React.StrictMode>
     <UserProvider>
       <TokenProvider>
-        <Router>
-          <App />
-        </Router>
+        <CharactersProvider>
+          <Router>
+            <App />
+          </Router>
+        </CharactersProvider>
       </TokenProvider>
     </UserProvider>
   </React.StrictMode>,

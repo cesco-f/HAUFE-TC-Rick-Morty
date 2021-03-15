@@ -1,16 +1,16 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { register } from './../../services/authAPI';
 
 import { loginHelper } from './../../helper/login.helper';
 
-import CharactersContext from './../../context/CharactersContext';
+import { useCharacters } from './../../context/CharactersContext';
 import { useToken } from './../../context/TokenContext';
 import { useUser } from './../../context/UserContext';
 
 import Form from './../Form/Form';
 
 function Register() {
-  const { setCharacters } = useContext(CharactersContext);
+  const setCharacters = useCharacters()[1];
   const setToken = useToken()[1];
   const setUser = useUser()[1];
 

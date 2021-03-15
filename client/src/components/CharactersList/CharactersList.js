@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
-import CharactersContext from './../../context/CharactersContext';
+import React from 'react';
+import { useCharacters } from './../../context/CharactersContext';
 
 import CharactersCard from './../CharactersCard/CharactersCard';
 
 function CharactersList() {
-  const { characters } = useContext(CharactersContext);
+  const characters = useCharacters()[0];
 
   return (
     <div className="CharactersList-container">

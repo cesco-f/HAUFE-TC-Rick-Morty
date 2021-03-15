@@ -7,7 +7,7 @@ const tokenReducer = (_, newToken) => {
 };
 
 export const TokenProvider = (props) => {
-  const [token, setToken] = useReducer(tokenReducer);
+  const [token, setToken] = useReducer(tokenReducer, null);
 
   return <TokenContext.Provider value={[token, setToken]} {...props} />;
 };
