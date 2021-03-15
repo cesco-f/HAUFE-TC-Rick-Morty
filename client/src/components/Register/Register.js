@@ -5,14 +5,14 @@ import { loginHelper } from './../../helper/login.helper';
 
 import CharactersContext from './../../context/CharactersContext';
 import TokenContext from './../../context/TokenContext';
-import UserContext from './../../context/UserContext';
+import { useUser } from './../../context/UserContext';
 
 import Form from './../Form/Form';
 
 function Register() {
   const { setCharacters } = useContext(CharactersContext);
   const { setToken } = useContext(TokenContext);
-  const { setUser } = useContext(UserContext);
+  const setUser = useUser()[1];
 
   const initialState = {
     username: '',

@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import UserContext from './../../context/UserContext';
+import { useUser } from './../../context/UserContext';
 
 function CharactersCard({ character }) {
-  const { user } = useContext(UserContext);
+  const user = useUser()[0];
 
   return (
     <Link to={`/character/${character.id}`}>
