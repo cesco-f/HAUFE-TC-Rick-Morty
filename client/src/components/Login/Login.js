@@ -3,14 +3,14 @@ import React, { useState, useContext } from 'react';
 import { loginHelper } from './../../helper/login.helper';
 
 import CharactersContext from './../../context/CharactersContext';
-import TokenContext from './../../context/TokenContext';
+import { useToken } from './../../context/TokenContext';
 import { useUser } from './../../context/UserContext';
 
 import Form from './../Form/Form';
 
 function Login() {
   const { setCharacters } = useContext(CharactersContext);
-  const { setToken } = useContext(TokenContext);
+  const setToken = useToken()[1];
   const setUser = useUser()[1];
 
   const initialState = {

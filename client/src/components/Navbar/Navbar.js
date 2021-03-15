@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-import TokenContext from './../../context/TokenContext';
+import { useToken } from './../../context/TokenContext';
 
 import navbarIcon from './../../assets/rick_morty_nav.png';
 import writing from './../../assets/rick_morty_writing.png';
 
 function Navbar() {
-  const { token, setToken } = useContext(TokenContext);
+  const [token, setToken] = useToken();
 
   const logOut = () => {
     localStorage.clear();

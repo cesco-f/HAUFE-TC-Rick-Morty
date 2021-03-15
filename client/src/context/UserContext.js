@@ -19,8 +19,7 @@ export const UserProvider = (props) => {
 export const useUser = () => {
   const context = useContext(UserContext);
   if (context === undefined) {
-    throw new Error('The useUser function must be called inside UserProvider');
+    throw new Error('The useUser hook must be called inside UserProvider');
   }
-  console.log('context :>> ', context);
   return context;
 };

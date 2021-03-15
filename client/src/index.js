@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import { UserProvider } from './context/UserContext';
+import { TokenProvider } from './context/TokenContext';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
@@ -12,9 +13,11 @@ import './styles/index.sass';
 ReactDOM.render(
   <React.StrictMode>
     <UserProvider>
-      <Router>
-        <App />
-      </Router>
+      <TokenProvider>
+        <Router>
+          <App />
+        </Router>
+      </TokenProvider>
     </UserProvider>
   </React.StrictMode>,
   document.getElementById('root'),

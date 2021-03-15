@@ -3,13 +3,13 @@ import { useParams, useHistory } from 'react-router-dom';
 import { addCharacterReq, removeCharacterReq } from './../../services/userAPI';
 import Button from './../UI/Button/Button';
 import { useUser } from './../../context/UserContext';
-import TokenContext from './../../context/TokenContext';
+import { useToken } from './../../context/TokenContext';
 import CharactersContext from './../../context/CharactersContext';
 
 function CharacterDetail() {
   const { charId } = useParams();
   const [user, setUser] = useUser();
-  const { token } = useContext(TokenContext);
+  const token = useToken()[0];
   const { characters } = useContext(CharactersContext);
 
   const character = characters && characters[charId];
